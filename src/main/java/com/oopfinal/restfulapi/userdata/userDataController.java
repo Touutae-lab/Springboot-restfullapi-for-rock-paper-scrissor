@@ -43,7 +43,7 @@ public class userDataController {
     @PostMapping(path="/playerstatus")
     public @ResponseBody userData getStatus(@RequestParam String Id) {
         LoggingController.log(
-                String.format("\nPOST To /leaderboard: Id = %s", Id));
+                String.format("\nPOST To /playerstatus: Id = %s", Id));
         userData response = Data.get(Id);
         return response;
     }
