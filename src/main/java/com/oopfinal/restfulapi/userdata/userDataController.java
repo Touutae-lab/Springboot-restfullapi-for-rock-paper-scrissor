@@ -43,7 +43,7 @@ public class userDataController {
     @PostMapping(path="/playerstatus")
     public @ResponseBody userData getStatus(@RequestParam String Id) {
         LoggingController.log(
-                String.format("\nPOST To /leaderboard: Id = %s", Id));
+                String.format("\nPOST To /playerstatus: Id = %s", Id));
         userData response = Data.get(Id);
         return response;
     }
@@ -91,7 +91,7 @@ public class userDataController {
         return sessiontmp;
     }
     @PostMapping(path="/forcejoin")
-    public @ResponseBody MiniData forcejoin(@RequestParam String session) {
+    public @ResponseBody List<MiniData> forcejoin(@RequestParam String session) {
         MiniData datatmp = new MiniData();
         datatmp.setStatus("Joined");
         SessionData sestmp = SessionControl.get(session);
@@ -99,7 +99,7 @@ public class userDataController {
         String username = sestmp.getPlayer2userName();
         datatmp.setId(id);
         datatmp.setUsername(username);
-        return datatmp;
+        return List.of(datatmp);
     }
 
     @PostMapping(path="/choose")
