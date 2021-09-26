@@ -1,21 +1,28 @@
 package com.oopfinal.restfulapi.userdata;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class userData {
     private String id;
     private String username;
     private String session;
     private int score;
-    private HashMap<String, HashMap<String, String>> request;
+    private int played;
+    private String challenge;
 
-    public HashMap<String, HashMap<String, String>> getRequest() {
-        return request;
+    public int getPlayed() {
+        return played;
     }
 
-    public void setRequest(HashMap<String, HashMap<String, String>> request) {
-        this.request = request;
+    public void setPlayed(int played) {
+        this.played = played;
+    }
+
+    public String getChallenge() {
+        return challenge;
+    }
+
+    public void setChallenge(String challenge) {
+        this.challenge = challenge;
     }
 
     public userData(String id, String username) {
