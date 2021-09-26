@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class RandomString {
-    static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();
 
     public String randomString(int len){
