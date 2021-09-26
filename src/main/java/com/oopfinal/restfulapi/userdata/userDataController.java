@@ -49,10 +49,10 @@ public class userDataController {
     }
 
     @PostMapping(path="/join")
-    public @ResponseBody List<MiniData> joinSession(@RequestParam String Id, @RequestParam String Session/*, @RequestBody String Round*/) {
+    public @ResponseBody MiniData joinSession(@RequestParam String Id, @RequestParam String Session/*, @RequestBody String Round*/) {
         LoggingController.log(
                 String.format("\nPOST To /join: Id = %s | Session = %s",
-                        Session, Id));
+                        Id, Session));
         boolean isKeyExist = SessionControl.containsKey(Session);
         MiniData data = new MiniData();
         if (isKeyExist) {
@@ -60,17 +60,17 @@ public class userDataController {
             SessionHandle hander = new SessionHandle();
             if (hander.checkIfYourself(sessioncontrol, Id)) {
                 data.setStatus("yourself");
-                return List.of(data);
+                return data;
             }
             else if (hander.checkRoom(sessioncontrol, Id) ){
                 String opponentId = sessioncontrol.getPlayer1ID();
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
                 sessioncontrol.setCurrent("1");
-                data.setId(opponentData.getUsername());
-                data.setUsername(opponentData.getId());
+                data.setId(opponentData.getId());
+                data.setUsername(opponentData.getUsername());
                 data.setStatus("Joined");
-                return List.of(data);
+                return data;
             }
             else {
                 data.setStatus("Session is full");
@@ -79,7 +79,7 @@ public class userDataController {
         }
         else {
             data.setStatus("Room is not found");
-            return List.of(data);
+            return data;
         }
     }
     @PostMapping(path="/sessionstatus")
@@ -92,7 +92,7 @@ public class userDataController {
     }
     
     @PostMapping(path="/forcejoin")
-    public @ResponseBody List<MiniData> forcejoin(@RequestParam String session) {
+    public @ResponseBody MiniData forcejoin(@RequestParam String session) {
         MiniData datatmp = new MiniData();
         datatmp.setStatus("Joined");
         SessionData sestmp = SessionControl.get(session);
@@ -100,7 +100,7 @@ public class userDataController {
         String username = sestmp.getPlayer2userName();
         datatmp.setId(id);
         datatmp.setUsername(username);
-        return List.of(datatmp);
+        return data;
     }
 
     @PostMapping(path="/choose")
