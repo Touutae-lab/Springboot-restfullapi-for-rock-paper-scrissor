@@ -12,6 +12,9 @@ public class userDataController {
 
     @PostMapping(path="/register")
     public @ResponseBody List<userData> addNewUser (@RequestParam String username ) {
+        LoggingController.log(
+                String.format("\nPOST To /register: username = %s", username));
+
         userData dataController = new userData(username);
         RandomString password = new RandomString();
         String userId = password.randomString(16);
@@ -28,6 +31,7 @@ public class userDataController {
     }
     @GetMapping(path="/leaderboard")
     public ArrayList<userData> getuserData() {
+        LoggingController.log(String.format("\nGET To /leaderboard"));
         ArrayList<userData> playerList = new ArrayList<>();
         for (userData i : Data.values()) {
             playerList.add(i);
@@ -35,20 +39,25 @@ public class userDataController {
         return playerList;
     }
     @PostMapping(path="/playerstatus")
-    public @ResponseBody userData getStatus(@RequestBody String Id) {
+    public @ResponseBody userData getStatus(@RequestParam String Id) {
+        LoggingController.log(
+                String.format("\nPOST To /leaderboard: Id = %s", Id));
         userData response = Data.get(Id);
         return response;
     }
 
     @PostMapping(path="/join")
-    public @ResponseBody String joinSession(@RequestBody String Id, @RequestBody String Session/*, @RequestBody String Round*/) {
+    public @ResponseBody String joinSession(@RequestParam String Id, @RequestParam String Session/*, @RequestBody String Round*/) {
+        LoggingController.log(
+                String.format("\nPOST To /join: Id = %s | Session = %s",
+                        Session, Id));
+
         userData datacontroller = Data.get(Id);
         boolean isKeyExist = SessionControl.containsKey(Session);
+
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
-            System.out.printf("%s / %s\n", sessioncontrol, Id);
-            LoggingController.log(String.format("%s / %s\n", sessioncontrol, Id));
             if (hander.checkIfYourself(sessioncontrol, Id)) {
                 return "yourself";
             }
@@ -66,13 +75,20 @@ public class userDataController {
         }
     }
     @PostMapping(path="/sessionstatus")
-    public @ResponseBody SessionData SessionStat(@RequestBody String sessionid) {
+    public @ResponseBody SessionData SessionStat(@RequestParam String sessionid) {
+        LoggingController.log(
+                String.format("\nPOST To /sessionstatus: sessionId = %s",
+                        sessionid));
         SessionData sessiontmp = SessionControl.get(sessionid);
         return sessiontmp;
     }
 
     @PostMapping(path="/choose")
-    public @ResponseBody String datadog(@RequestBody String Id, @RequestBody String round, @RequestBody Integer choose ) {
+    public @ResponseBody String datadog(@RequestParam String Id, @RequestParam String round, @RequestParam Integer choose ) {
+        LoggingController.log(
+                String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
+                        Id, round, choose.intValue()));
+
         SessionData sessiontmp = SessionControl.get(Id);
         sessiontmp.setRound(round, sessiontmp.createHash(choose,Id));
         HashMap<String, HashMap<String, Integer>> nxtround = sessiontmp.getRound();
