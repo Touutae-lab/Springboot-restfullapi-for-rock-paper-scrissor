@@ -48,7 +48,10 @@ public class userDataController {
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
-            if (hander.checkRoom(sessioncontrol, Id) ){
+            if (hander.checkIfYourself(sessioncontrol, Id)) {
+                return "yourself";
+            }
+            else if (hander.checkRoom(sessioncontrol, Id) ){
                 datacontroller.setChallenge("yes");
                 sessioncontrol.setCurrent("1");
                 return "Joined";
@@ -56,7 +59,6 @@ public class userDataController {
             else {
                 return "Session is full";
             }
-
         }
         else {
             return "Room is not found";
