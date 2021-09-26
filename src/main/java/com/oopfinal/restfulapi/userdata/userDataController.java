@@ -25,6 +25,7 @@ public class userDataController {
 
         SessionData sessionTemp = new SessionData();
         sessionTemp.setPlayer1ID(userId);
+        sessionTemp.setPlayer2ID("");
         SessionControl.put(userSession, sessionTemp);
 
         return List.of(dataController);
