@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 @RestController
 public class userDataController {
     private HashMap<String, userData> Data= new HashMap<String, userData>();
@@ -55,6 +57,7 @@ public class userDataController {
                         Id, Session));
         boolean isKeyExist = SessionControl.containsKey(Session);
         MiniData data = new MiniData();
+        userData myData = Data.get(Id);
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
@@ -67,6 +70,8 @@ public class userDataController {
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
                 sessioncontrol.setCurrent("1");
+                sessioncontrol.setPlayer2ID(Id);
+                sessioncontrol.setPlayer2userName(myData.getUsername());
                 data.setId(opponentData.getId());
                 data.setUsername(opponentData.getUsername());
                 data.setStatus("Joined");
