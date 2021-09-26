@@ -28,4 +28,13 @@ public class MiniData {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "MiniData{" +
+                "status='" + status + '\'' +
+                ", id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
