@@ -74,7 +74,7 @@ public class userDataController {
             }
             else {
                 data.setStatus("Session is full");
-                return List.of(data);
+                return data;
             }
         }
         else {
@@ -100,7 +100,7 @@ public class userDataController {
         String username = sestmp.getPlayer2userName();
         datatmp.setId(id);
         datatmp.setUsername(username);
-        return data;
+        return datatmp;
     }
 
     @PostMapping(path="/choose")
