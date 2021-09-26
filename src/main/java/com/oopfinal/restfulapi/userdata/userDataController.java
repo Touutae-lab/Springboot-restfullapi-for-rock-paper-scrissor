@@ -90,6 +90,17 @@ public class userDataController {
         SessionData sessiontmp = SessionControl.get(sessionid);
         return sessiontmp;
     }
+    @PostMapping(path="/forcejoin")
+    public @ResponseBody MiniData forcejoin(@RequestParam String session) {
+        MiniData datatmp = new MiniData();
+        datatmp.setStatus("Joined");
+        SessionData sestmp = SessionControl.get(session);
+        String id = sestmp.getPlayer2ID();
+        String username = sestmp.getPlayer2userName();
+        datatmp.setId(id);
+        datatmp.setUsername(username);
+        return datatmp;
+    }
 
     @PostMapping(path="/choose")
     public @ResponseBody String datadog(@RequestParam String Id, @RequestParam String round, @RequestParam Integer choose ) {
