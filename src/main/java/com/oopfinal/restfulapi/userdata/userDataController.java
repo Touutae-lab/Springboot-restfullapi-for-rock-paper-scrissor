@@ -92,7 +92,7 @@ public class userDataController {
     }
     
     @PostMapping(path="/forcejoin")
-    public @ResponseBody MiniData forcejoin(@RequestParam String session) {
+    public @ResponseBody List<MiniData> forcejoin(@RequestParam String session) {
         MiniData datatmp = new MiniData();
         datatmp.setStatus("Joined");
         SessionData sestmp = SessionControl.get(session);
@@ -100,7 +100,7 @@ public class userDataController {
         String username = sestmp.getPlayer2userName();
         datatmp.setId(id);
         datatmp.setUsername(username);
-        return datatmp;
+        return List.of(datatmp);
     }
 
     @PostMapping(path="/choose")
