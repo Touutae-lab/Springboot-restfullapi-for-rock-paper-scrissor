@@ -90,6 +90,7 @@ public class userDataController {
         SessionData sessiontmp = SessionControl.get(sessionid);
         return sessiontmp;
     }
+    
     @PostMapping(path="/forcejoin")
     public @ResponseBody List<MiniData> forcejoin(@RequestParam String session) {
         MiniData datatmp = new MiniData();
