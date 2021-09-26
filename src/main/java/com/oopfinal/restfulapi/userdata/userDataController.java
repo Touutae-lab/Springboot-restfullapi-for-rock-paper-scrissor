@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
 public class userDataController {
     private HashMap<String, userData> Data= new HashMap<String, userData>();
@@ -42,12 +41,14 @@ public class userDataController {
     }
 
     @PostMapping(path="/join")
-    public @ResponseBody String joinSession(@RequestBody String Id, @RequestBody String Session, @RequestBody String Round) {
+    public @ResponseBody String joinSession(@RequestBody String Id, @RequestBody String Session/*, @RequestBody String Round*/) {
         userData datacontroller = Data.get(Id);
         boolean isKeyExist = SessionControl.containsKey(Session);
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
+            System.out.printf("%s / %s\n", sessioncontrol, Id);
+            LoggingController.log(String.format("%s / %s\n", sessioncontrol, Id));
             if (hander.checkIfYourself(sessioncontrol, Id)) {
                 return "yourself";
             }
