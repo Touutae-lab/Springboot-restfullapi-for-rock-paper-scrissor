@@ -25,6 +25,7 @@ public class userDataController {
 
         SessionData sessionTemp = new SessionData();
         sessionTemp.setPlayer1ID(userId);
+        sessionTemp.setPlayer1userName(username);
         sessionTemp.setPlayer2ID("");
         SessionControl.put(userSession, sessionTemp);
 
@@ -52,8 +53,6 @@ public class userDataController {
         LoggingController.log(
                 String.format("\nPOST To /join: Id = %s | Session = %s",
                         Session, Id));
-
-        userData datacontroller = Data.get(Id);
         boolean isKeyExist = SessionControl.containsKey(Session);
 
         if (isKeyExist) {
@@ -63,7 +62,9 @@ public class userDataController {
                 return "yourself";
             }
             else if (hander.checkRoom(sessioncontrol, Id) ){
-                datacontroller.setChallenge("yes");
+                String opponentId = sessioncontrol.getPlayer1ID();
+                userData opponentData = Data.get(opponentId);
+                opponentData.setChallenge(true);
                 sessioncontrol.setCurrent("1");
                 return "Joined";
             }

@@ -7,7 +7,7 @@ public class userData {
     private String session;
     private int score;
     private int played;
-    private String challenge;
+    private Boolean challenge=false;
 
     public int getPlayed() {
         return played;
@@ -17,12 +17,12 @@ public class userData {
         this.played = played;
     }
 
-    public String getChallenge() {
+    public Boolean getChallenge() {
         return challenge;
     }
 
-    public void setChallenge(String challenge) {
-        this.challenge = challenge;
+    public void setChallenge(Boolean b) {
+        this.challenge = b;
     }
 
     public userData(String id, String username) {
@@ -76,6 +76,7 @@ public class userData {
     public void setScore(int score) {
         this.score = score;
     }
+
 
     @java.lang.Override
     public java.lang.String toString() {

@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 public class SessionData {
     protected String winner;
+    protected String player1userName;
+    protected String player2userName;
     protected String player1ID;
     protected String player2ID;
     protected HashMap<String, HashMap<String, Integer>> round = new HashMap<String, HashMap<String, Integer>>();
@@ -49,8 +51,24 @@ public class SessionData {
     public void setRound(String round , HashMap<String, Integer> Arr) {
         this.round.put(round, Arr);
     }
-    public void setCurrent(String round) {
-        this.current = round;
+    public void setCurrent(String string) {
+        this.current = string;
+    }
+
+    public String getPlayer1userName() {
+        return player1userName;
+    }
+
+    public void setPlayer1userName(String player1userName) {
+        this.player1userName = player1userName;
+    }
+
+    public String getPlayer2userName() {
+        return player2userName;
+    }
+
+    public void setPlayer2userName(String player2userName) {
+        this.player2userName = player2userName;
     }
 
     @java.lang.Override
