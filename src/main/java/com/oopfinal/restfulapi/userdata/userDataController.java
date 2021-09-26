@@ -49,31 +49,37 @@ public class userDataController {
     }
 
     @PostMapping(path="/join")
-    public @ResponseBody String joinSession(@RequestParam String Id, @RequestParam String Session/*, @RequestBody String Round*/) {
+    public @ResponseBody List<MiniData> joinSession(@RequestParam String Id, @RequestParam String Session/*, @RequestBody String Round*/) {
         LoggingController.log(
                 String.format("\nPOST To /join: Id = %s | Session = %s",
                         Session, Id));
         boolean isKeyExist = SessionControl.containsKey(Session);
-
+        MiniData data = new MiniData();
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
             if (hander.checkIfYourself(sessioncontrol, Id)) {
-                return "yourself";
+                data.setStatus("yourself");
+                return List.of(data);
             }
             else if (hander.checkRoom(sessioncontrol, Id) ){
                 String opponentId = sessioncontrol.getPlayer1ID();
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
                 sessioncontrol.setCurrent("1");
-                return "Joined";
+                data.setId(opponentData.getUsername());
+                data.setUsername(opponentData.getId());
+                data.setStatus("Joined");
+                return List.of(data);
             }
             else {
-                return "Session is full";
+                data.setStatus("Session is full");
+                return List.of(data);
             }
         }
         else {
-            return "Room is not found";
+            data.setStatus("Room is not found");
+            return List.of(data);
         }
     }
     @PostMapping(path="/sessionstatus")

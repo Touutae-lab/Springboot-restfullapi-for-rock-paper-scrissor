@@ -7,7 +7,7 @@ public class userData {
     private String session;
     private int score;
     private int played;
-    private Boolean challenge=false;
+    private boolean challenge=false;
 
     public int getPlayed() {
         return played;
@@ -17,11 +17,11 @@ public class userData {
         this.played = played;
     }
 
-    public Boolean getChallenge() {
+    public boolean getChallenge() {
         return challenge;
     }
 
-    public void setChallenge(Boolean b) {
+    public void setChallenge(boolean b) {
         this.challenge = b;
     }
 
