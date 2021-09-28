@@ -1,10 +1,6 @@
 package com.oopfinal.restfulapi.userdata;
 
 import java.security.SecureRandom;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Random;
-
 public class RandomString {
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();

@@ -7,6 +7,8 @@ public class SessionData {
     protected String winner;
     protected String player1userName;
     protected String player2userName;
+    protected Integer player1Score;
+    protected Integer player2Score;
     protected String player1ID;
     protected String player2ID;
     protected String session;
@@ -83,6 +85,22 @@ public class SessionData {
 
     public void setSession(String session) {
         this.session = session;
+    }
+
+    public Integer getPlayer1Score() {
+        return player1Score;
+    }
+
+    public void setPlayer1Score(Integer player1Score) {
+        this.player1Score = player1Score;
+    }
+
+    public Integer getPlayer2Score() {
+        return player2Score;
+    }
+
+    public void setPlayer2Score(Integer player2Score) {
+        this.player2Score = player2Score;
     }
 
     @java.lang.Override
