@@ -6,7 +6,7 @@ public class SessionHandle extends SessionData{
     }
 
     public boolean checkRoom(SessionData session, String id) {
-        return session.getPlayer2().equals(null);
+        return session.getPlayer2() == null;
     }
     // SessionHandle(SessionData session, String tmRound) {
         

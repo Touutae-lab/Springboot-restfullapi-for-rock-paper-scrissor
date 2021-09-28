@@ -2,8 +2,6 @@ package com.oopfinal.restfulapi.userdata;
 
 import java.util.HashMap;
 
-
-
 public class SessionData {
     protected String winner;
     protected HashMap<String, String> Player1;
