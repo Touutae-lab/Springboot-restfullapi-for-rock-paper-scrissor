@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 @RestController
 public class userDataController {
@@ -69,7 +68,7 @@ public class userDataController {
                 String opponentId = sessioncontrol.getPlayer1ID();
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
-                sessioncontrol.setCurrent("1");
+                sessioncontrol.setCurrent(1);
                 sessioncontrol.setPlayer2ID(Id);
                 sessioncontrol.setPlayer2userName(myData.getUsername());
                 data.setId(opponentData.getId());
@@ -109,27 +108,23 @@ public class userDataController {
     }
 
     @PostMapping(path="/choose")
-    public @ResponseBody String datadog(@RequestParam String Id, @RequestParam String round, @RequestParam Integer choose ) {
+    public @ResponseBody String datadog(@RequestParam String Id, @RequestParam Integer round, @RequestParam Integer choose ) {
         LoggingController.log(
                 String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
                         Id, round, choose.intValue()));
-
         SessionData sessiontmp = SessionControl.get(Id);
         sessiontmp.setRound(round, sessiontmp.createHash(choose,Id));
-        HashMap<String, HashMap<String, Integer>> nxtround = sessiontmp.getRound();
+        HashMap<Integer, HashMap<String, Integer>> nxtround = sessiontmp.getRound();
         if (checkRoom(round, sessiontmp)) { 
-            int i = Integer.parseInt(round) + 1;
-            round = Integer.toString(i);
-            sessiontmp.setCurrent(round);
+            sessiontmp.setCurrent(round+1);
         }
         return "done";
-        
     }
-    public boolean checkRoom(String currentRound,SessionData checker) {
-        HashMap<String, HashMap<String, Integer>> HashCheck = checker.getRound();
+    public boolean checkRoom(Integer currentRound,SessionData checker) {
+        HashMap<Integer, HashMap<String, Integer>> HashCheck = checker.getRound();
         if (HashCheck.get(currentRound).size() == 2){
             return true;
-        }   
+        }
         return false;
         
     }

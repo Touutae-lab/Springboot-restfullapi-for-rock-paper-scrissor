@@ -9,8 +9,10 @@ public class SessionData {
     protected String player2userName;
     protected String player1ID;
     protected String player2ID;
-    protected HashMap<String, HashMap<String, Integer>> round = new HashMap<String, HashMap<String, Integer>>();
-    protected String current;
+    protected String session;
+    //round: ID: choice
+    protected HashMap<Integer, HashMap<String, Integer>> round = new HashMap<Integer, HashMap<String, Integer>>();
+    protected Integer current;
     
     public HashMap<String, Integer> createHash(Integer choose, String userId) {
         HashMap<String, Integer> hashTemp = new HashMap<>();
@@ -44,15 +46,19 @@ public class SessionData {
         this.player2ID = player2ID;
     }
 
-    public HashMap<String, HashMap<String, Integer>> getRound() {
+    public HashMap<Integer, HashMap<String, Integer>> getRound() {
         return round;
     }
 
-    public void setRound(String round , HashMap<String, Integer> Arr) {
+    public void setRound(Integer round , HashMap<String, Integer> Arr) {
         this.round.put(round, Arr);
     }
-    public void setCurrent(String string) {
+    public void setCurrent(Integer string) {
         this.current = string;
+    }
+
+    public Integer getCurrent() {
+        return current;
     }
 
     public String getPlayer1userName() {
@@ -69,6 +75,14 @@ public class SessionData {
 
     public void setPlayer2userName(String player2userName) {
         this.player2userName = player2userName;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 
     @java.lang.Override
