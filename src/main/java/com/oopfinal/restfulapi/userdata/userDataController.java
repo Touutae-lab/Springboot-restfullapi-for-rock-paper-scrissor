@@ -2,6 +2,8 @@ package com.oopfinal.restfulapi.userdata;
 
 import java.util.HashMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.theme.SessionThemeResolver;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +70,8 @@ public class userDataController {
                 
                 GameHandle handler = new GameHandle();
                 String opponentId = sessioncontrol.getPlayer1().get("Id");
-
-
+                
+                sessioncontrol.setStatus(true);
                 sessioncontrol.setRound(handler.generateData(opponentId, Id));
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
@@ -95,7 +97,20 @@ public class userDataController {
         LoggingController.log(
                 String.format("\nPOST To /sessionstatus: sessionId = %s",
                         sessionid));
+
+        GameHandle handler = new GameHandle();
         SessionData sessiontmp = SessionControl.get(sessionid);
+        if (!sessiontmp.getWinner().equals("")) {
+            sessiontmp.setStatus(false);
+            sessiontmp.setPlayer2Null();
+            userData UserData = Data.get(sessiontmp.getWinner());
+            if (UserData == null) { }
+            else {
+                UserData.setScore(UserData.getScore()+1);
+            }
+            return sessiontmp;
+        }
+        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
         return sessiontmp;
     }
     
@@ -112,16 +127,14 @@ public class userDataController {
     }
 
     @PostMapping(path="/choose")
-    public @ResponseBody String datadog(@RequestParam String Id, @RequestParam Integer round, @RequestParam Integer choose ) {
+    public @ResponseBody String datadog(@RequestParam String session, @RequestParam String Id, @RequestParam Integer round, @RequestParam Integer choose ) {
         LoggingController.log(
                 String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
                         Id, round, choose.intValue()));
         
-        SessionData sessiontmp = SessionControl.get(Id);
-        GameHandle handler = new GameHandle();
-        
-        HashMap<Integer, HashMap<String, Integer>> sessionRound = sessiontmp.getRound();
-        sessionRound.get(round);
+        // add round + 1
+        SessionData sessiontmp = SessionControl.get(session);
+        sessiontmp.setChoice(Id, round, choose);
         return "done";
     }
 }

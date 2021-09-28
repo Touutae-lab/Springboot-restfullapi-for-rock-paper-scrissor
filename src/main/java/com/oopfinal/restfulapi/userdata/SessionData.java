@@ -3,7 +3,8 @@ package com.oopfinal.restfulapi.userdata;
 import java.util.HashMap;
 
 public class SessionData {
-    protected String winner;
+    protected boolean status = true;
+    protected String winner = "";
     protected HashMap<String, String> Player1;
     protected HashMap<String, String> Player2;
     protected String session;
@@ -15,6 +16,10 @@ public class SessionData {
         HashMap<String, Integer> hashTemp = new HashMap<>();
         hashTemp.put(userId, choose);
         return hashTemp;
+    }
+    public void setChoice(String Id, Integer round, Integer choose) {
+        HashMap<String, Integer> tmpDas = this.round.get(round);
+        tmpDas.put(Id, choose);
     }
     private HashMap<String, String> getPlayertemp(String Id, String UserName, String Score) {
         HashMap<String, String> dataTmp = new HashMap<>();
@@ -82,6 +87,14 @@ public class SessionData {
 
     public void setRound(HashMap<Integer, HashMap<String, Integer>> round) {
         this.round = round;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @java.lang.Override
