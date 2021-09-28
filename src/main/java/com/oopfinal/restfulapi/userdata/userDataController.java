@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 @RestController
 public class userDataController {
     private HashMap<String, userData> Data= new HashMap<String, userData>();
@@ -25,11 +26,9 @@ public class userDataController {
         Data.put(userId, dataController);
 
         SessionData sessionTemp = new SessionData();
-        sessionTemp.setPlayer1ID(userId);
-        sessionTemp.setPlayer1userName(username);
-        sessionTemp.setPlayer2ID("");
+        sessionTemp.setPlayer1(userId, username, "0");
+        sessionTemp.setPlayer2Null();
         SessionControl.put(userSession, sessionTemp);
-
         return List.of(dataController);
     }
     @GetMapping(path="/leaderboard")
@@ -60,17 +59,22 @@ public class userDataController {
         if (isKeyExist) {
             SessionData sessioncontrol =  SessionControl.get(Session);
             SessionHandle hander = new SessionHandle();
+
             if (hander.checkIfYourself(sessioncontrol, Id)) {
                 data.setStatus("yourself");
                 return data;
             }
             else if (hander.checkRoom(sessioncontrol, Id) ){
-                String opponentId = sessioncontrol.getPlayer1ID();
+                
+                GameHandle handler = new GameHandle();
+                String opponentId = sessioncontrol.getPlayer1().get("Id");
+
+
+                sessioncontrol.setRound(handler.generateData(opponentId, Id));
                 userData opponentData = Data.get(opponentId);
                 opponentData.setChallenge(true);
                 sessioncontrol.setCurrent(1);
-                sessioncontrol.setPlayer2ID(Id);
-                sessioncontrol.setPlayer2userName(myData.getUsername());
+                sessioncontrol.setPlayer2(Id, myData.getUsername(), "0"); //Must be "Id": {Id}//Must be "UserName": {myData.getUsername}
                 data.setId(opponentData.getId());
                 data.setUsername(opponentData.getUsername());
                 data.setStatus("Joined");
@@ -100,8 +104,8 @@ public class userDataController {
         MiniData datatmp = new MiniData();
         datatmp.setStatus("Joined");
         SessionData sestmp = SessionControl.get(session);
-        String id = sestmp.getPlayer2ID();
-        String username = sestmp.getPlayer2userName();
+        String id = sestmp.getPlayer2().get("Id");
+        String username = sestmp.getPlayer2().get("username");
         datatmp.setId(id);
         datatmp.setUsername(username);
         return datatmp;
@@ -112,20 +116,12 @@ public class userDataController {
         LoggingController.log(
                 String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
                         Id, round, choose.intValue()));
-        SessionData sessiontmp = SessionControl.get(Id);
-        sessiontmp.setRound(round, sessiontmp.createHash(choose,Id));
-        HashMap<Integer, HashMap<String, Integer>> nxtround = sessiontmp.getRound();
-        if (checkRoom(round, sessiontmp)) { 
-            sessiontmp.setCurrent(round+1);
-        }
-        return "done";
-    }
-    public boolean checkRoom(Integer currentRound,SessionData checker) {
-        HashMap<Integer, HashMap<String, Integer>> HashCheck = checker.getRound();
-        if (HashCheck.get(currentRound).size() == 2){
-            return true;
-        }
-        return false;
         
+        SessionData sessiontmp = SessionControl.get(Id);
+        GameHandle handler = new GameHandle();
+        
+        HashMap<Integer, HashMap<String, Integer>> sessionRound = sessiontmp.getRound();
+        sessionRound.get(round);
+        return "done";
     }
 }

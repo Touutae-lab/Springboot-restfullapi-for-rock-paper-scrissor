@@ -3,14 +3,11 @@ package com.oopfinal.restfulapi.userdata;
 import java.util.HashMap;
 
 
+
 public class SessionData {
     protected String winner;
-    protected String player1userName;
-    protected String player2userName;
-    protected Integer player1Score;
-    protected Integer player2Score;
-    protected String player1ID;
-    protected String player2ID;
+    protected HashMap<String, String> Player1;
+    protected HashMap<String, String> Player2;
     protected String session;
     //round: ID: choice
     protected HashMap<Integer, HashMap<String, Integer>> round = new HashMap<Integer, HashMap<String, Integer>>();
@@ -21,6 +18,33 @@ public class SessionData {
         hashTemp.put(userId, choose);
         return hashTemp;
     }
+    private HashMap<String, String> getPlayertemp(String Id, String UserName, String Score) {
+        HashMap<String, String> dataTmp = new HashMap<>();
+        dataTmp.put("Id", Id);
+        dataTmp.put("username", UserName);
+        dataTmp.put("score", Score);
+        return dataTmp;
+    }
+    public void setPlayer2Null() {
+        this.Player2 = null;
+    }
+
+    public HashMap<String, String> getPlayer1() {
+        return Player1;
+    }
+
+    public void setPlayer1(String Id, String UserName, String Score) {
+        Player1 = getPlayertemp(Id, UserName, Score);
+    }
+
+    public HashMap<String, String> getPlayer2() {
+        return Player2;
+    }
+
+    public void setPlayer2(String Id, String UserName, String Score) {
+        Player2 = getPlayertemp(Id, UserName, Score);
+    }
+
     public void putHash(String userId, Integer choose) {
         
     }
@@ -32,21 +56,6 @@ public class SessionData {
         this.winner = winner;
     }
 
-    public String getPlayer1ID() {
-        return player1ID;
-    }
-
-    public void setPlayer1ID(String player1ID) {
-        this.player1ID = player1ID;
-    }
-
-    public String getPlayer2ID() {
-        return player2ID;
-    }
-
-    public void setPlayer2ID(String player2ID) {
-        this.player2ID = player2ID;
-    }
 
     public HashMap<Integer, HashMap<String, Integer>> getRound() {
         return round;
@@ -63,21 +72,6 @@ public class SessionData {
         return current;
     }
 
-    public String getPlayer1userName() {
-        return player1userName;
-    }
-
-    public void setPlayer1userName(String player1userName) {
-        this.player1userName = player1userName;
-    }
-
-    public String getPlayer2userName() {
-        return player2userName;
-    }
-
-    public void setPlayer2userName(String player2userName) {
-        this.player2userName = player2userName;
-    }
 
     public String getSession() {
         return session;
@@ -87,29 +81,20 @@ public class SessionData {
         this.session = session;
     }
 
-    public Integer getPlayer1Score() {
-        return player1Score;
-    }
 
-    public void setPlayer1Score(Integer player1Score) {
-        this.player1Score = player1Score;
-    }
-
-    public Integer getPlayer2Score() {
-        return player2Score;
-    }
-
-    public void setPlayer2Score(Integer player2Score) {
-        this.player2Score = player2Score;
+    public void setRound(HashMap<Integer, HashMap<String, Integer>> round) {
+        this.round = round;
     }
 
     @java.lang.Override
     public java.lang.String toString() {
         return "SessionData{" +
                 "winner='" + winner + '\'' +
-                ", player1ID='" + player1ID + '\'' +
-                ", player2ID='" + player2ID + '\'' +
+                ", Player1=" + Player1 +
+                ", Player2=" + Player2 +
+                ", session='" + session + '\'' +
                 ", round=" + round +
+                ", current=" + current +
                 '}';
     }
 }

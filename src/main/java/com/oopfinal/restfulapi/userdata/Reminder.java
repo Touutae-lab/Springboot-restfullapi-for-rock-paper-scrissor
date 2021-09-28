@@ -17,7 +17,6 @@ public class Reminder {
 
     class RemindTask extends TimerTask {
         public void run() {
-            System.out.println("Time's up!");
             timer.cancel(); //Terminate the timer thread
         }
     }
