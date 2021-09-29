@@ -106,23 +106,21 @@ public class userDataController {
             sessiontmp.setPlayer2Null();
             return sessiontmp;
         }
-
         handler.checkWin(sessiontmp, sessiontmp.getCurrent());
         LoggingController.log("response with " + sessiontmp.toString());
         return sessiontmp;
     }
     @PostMapping(path="/winner")
     public @ResponseBody String whowin(@RequestParam String State, @RequestParam String Id) {
-        userData data = Data.get(Id);
-        data.setPlayed(data.getPlayed()+1);
-        if (State.equals("win")) {
-            data.setScore(data.getScore()+1);
-        }
+            userData data = Data.get(Id);
+            data.setPlayed(data.getPlayed()+1);
+            if (State.equals("win")) {
+                data.setScore(data.getScore()+1);
+            }
         return "done";
         
 
-    }
-    
+        } 
     @PostMapping(path="/forcejoin")
     public @ResponseBody MiniData forcejoin(@RequestParam String session) {
         LoggingController.log("session = " + session);
@@ -153,13 +151,8 @@ public class userDataController {
         
         // add round + 1
         SessionData sessiontmp = SessionControl.get(session);
+        sessiontmp.setCurrent(round);
         sessiontmp.setChoice(Id, round, choose);
-        if (sessiontmp.getPlayer1().get("Id").equals(Id)) {
-            new Reminder(sessiontmp, round, 1);
-        }
-        else {
-            new Reminder(sessiontmp, round, 2);
-        }
         return "done";
     }
 }
