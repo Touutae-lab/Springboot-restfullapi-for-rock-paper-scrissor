@@ -25,10 +25,10 @@ public class GameHandle {
         Integer Con1 = Data.get(player1.get("Id"));
         Integer Con2 = Data.get(player2.get("Id"));
         if ( Con1 == 0 && Con2 != 0) {
-            Reminder reminder = new Reminder(SesData, 2);
+            Reminder reminder = new Reminder(SesData, 1);
         }
         else if (Con2 == 0 && Con1 != 0) {
-            Reminder reminder = new Reminder(SesData, 1);
+            Reminder reminder = new Reminder(SesData, 2);
         }
     }
 }
