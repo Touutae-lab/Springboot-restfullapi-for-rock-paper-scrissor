@@ -154,6 +154,12 @@ public class userDataController {
         // add round + 1
         SessionData sessiontmp = SessionControl.get(session);
         sessiontmp.setChoice(Id, round, choose);
+        if (sessiontmp.getPlayer1().get("Id").equals(Id)) {
+            new Reminder(sessiontmp, 2);
+        }
+        else {
+            new Reminder(sessiontmp, 1);
+        }
         return "done";
     }
 }
