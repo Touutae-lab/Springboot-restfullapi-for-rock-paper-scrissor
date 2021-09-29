@@ -106,21 +106,17 @@ public class userDataController {
             sessiontmp.setPlayer2Null();
             return sessiontmp;
         }
-        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
 
-        
+        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
         LoggingController.log("response with " + sessiontmp.toString());
         return sessiontmp;
     }
     @PostMapping(path="/winner")
-    public @ResponseBody String whowin(@RequestParam String State, @RequestParam String Id1, @RequestParam String Id2) {
-        userData winer = Data.get(Id1);
-        userData loser = Data.get(Id2);
-
-        winer.setPlayed(winer.getPlayed()+1);
-        loser.setPlayed(loser.getPlayed()+1);
-        if (!State.equals("tie")) {
-            winer.setScore(winer.getScore()+1);
+    public @ResponseBody String whowin(@RequestParam String State, @RequestParam String Id) {
+        userData data = Data.get(Id);
+        data.setPlayed(data.getPlayed()+1);
+        if (State.equals("win")) {
+            data.setScore(data.getScore()+1);
         }
         return "done";
         
