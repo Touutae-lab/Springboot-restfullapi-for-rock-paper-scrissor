@@ -149,10 +149,12 @@ public class userDataController {
                 String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
                         Id, round, choose.intValue()));
         
+        SessionData sessiontmp = SessionControl.get(session);          
         // add round + 1
-        SessionData sessiontmp = SessionControl.get(session);
-        sessiontmp.setCurrent(round);
-        sessiontmp.setChoice(Id, round, choose);
+        if (sessiontmp.getCurrent() < round) {
+            sessiontmp.setCurrent(round);
+        }
+        sessiontmp.setChoice(Id, round, choose);  
         return "done";
     }
 }
