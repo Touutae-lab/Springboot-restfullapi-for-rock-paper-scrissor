@@ -4,6 +4,7 @@ import java.util.HashMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.theme.SessionThemeResolver;
 
+import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,11 +104,6 @@ public class userDataController {
         if (!sessiontmp.getWinner().equals("")) {
             sessiontmp.setStatus(false);
             sessiontmp.setPlayer2Null();
-            userData UserData = Data.get(sessiontmp.getWinner());
-            if (UserData == null) { }
-            else {
-                UserData.setScore(UserData.getScore()+1);
-            }
             return sessiontmp;
         }
         handler.checkWin(sessiontmp, sessiontmp.getCurrent());
@@ -115,6 +111,20 @@ public class userDataController {
         
         LoggingController.log("response with " + sessiontmp.toString());
         return sessiontmp;
+    }
+    @PostMapping(path="/winner")
+    public @ResponseBody String whowin(@RequestParam String State, @RequestParam String Id1, @RequestParam String Id2) {
+        userData winer = Data.get(Id1);
+        userData loser = Data.get(Id2);
+
+        winer.setPlayed(winer.getPlayed()+1);
+        loser.setPlayed(loser.getPlayed()+1);
+        if (!State.equals("tie")) {
+            winer.setScore(winer.getScore()+1);
+        }
+        return "done";
+        
+
     }
     
     @PostMapping(path="/forcejoin")
