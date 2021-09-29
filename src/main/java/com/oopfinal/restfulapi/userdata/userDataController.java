@@ -155,10 +155,10 @@ public class userDataController {
         SessionData sessiontmp = SessionControl.get(session);
         sessiontmp.setChoice(Id, round, choose);
         if (sessiontmp.getPlayer1().get("Id").equals(Id)) {
-            new Reminder(sessiontmp, 2);
+            new Reminder(sessiontmp, round, 1);
         }
         else {
-            new Reminder(sessiontmp, 1);
+            new Reminder(sessiontmp, round, 2);
         }
         return "done";
     }
