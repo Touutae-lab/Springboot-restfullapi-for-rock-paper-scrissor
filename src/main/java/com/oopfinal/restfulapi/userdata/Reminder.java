@@ -22,7 +22,7 @@ public class Reminder {
             remind.setId(data.getPlayer2().get("Id"));
         }
         remind.setRound(data.getRound());
-        timer.schedule(remind, 10000);
+        timer.schedule(remind, 20000);
 	}
 
     class RemindTask extends TimerTask {
