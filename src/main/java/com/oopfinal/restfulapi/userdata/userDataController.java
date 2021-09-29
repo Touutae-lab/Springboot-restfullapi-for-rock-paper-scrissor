@@ -111,18 +111,31 @@ public class userDataController {
             return sessiontmp;
         }
         handler.checkWin(sessiontmp, sessiontmp.getCurrent());
+
+        
+        LoggingController.log("response with " + sessiontmp.toString());
         return sessiontmp;
     }
     
     @PostMapping(path="/forcejoin")
     public @ResponseBody MiniData forcejoin(@RequestParam String session) {
-        MiniData datatmp = new MiniData();
-        datatmp.setStatus("Joined");
+        LoggingController.log("session = " + session);
+
         SessionData sestmp = SessionControl.get(session);
+        MiniData datatmp = new MiniData();
+
+        if (sestmp.getPlayer2() == null) {
+            Data.get(sestmp.getPlayer1().get("Id")).setChallenge(false);
+            datatmp.setStatus("out of update");
+            return datatmp;
+        }
+
+        datatmp.setStatus("Joined");
         String id = sestmp.getPlayer2().get("Id");
         String username = sestmp.getPlayer2().get("username");
         datatmp.setId(id);
         datatmp.setUsername(username);
+        LoggingController.log("datatmp = " + datatmp.toString());
         return datatmp;
     }
 
