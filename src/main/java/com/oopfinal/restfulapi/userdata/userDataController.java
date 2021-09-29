@@ -101,12 +101,12 @@ public class userDataController {
 
         GameHandle handler = new GameHandle();
         SessionData sessiontmp = SessionControl.get(sessionid);
+        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
         if (!sessiontmp.getWinner().equals("")) {
             sessiontmp.setStatus(false);
             sessiontmp.setPlayer2Null();
             return sessiontmp;
         }
-        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
         LoggingController.log("response with " + sessiontmp.toString());
         return sessiontmp;
     }
