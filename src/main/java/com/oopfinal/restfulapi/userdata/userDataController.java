@@ -2,9 +2,7 @@ package com.oopfinal.restfulapi.userdata;
 
 import java.util.HashMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.theme.SessionThemeResolver;
 
-import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +99,7 @@ public class userDataController {
 
         GameHandle handler = new GameHandle();
         SessionData sessiontmp = SessionControl.get(sessionid);
-        handler.checkWin(sessiontmp, sessiontmp.getCurrent());
+        handler.checkWin(sessiontmp, sessiontmp.getCurrent(), Data.get(sessiontmp.getPlayer1().get("Id")), Data.get(sessiontmp.getPlayer2().get("Id")));
         if (!sessiontmp.getWinner().equals("")) {
             sessiontmp.setStatus(false);
             sessiontmp.setPlayer2Null();

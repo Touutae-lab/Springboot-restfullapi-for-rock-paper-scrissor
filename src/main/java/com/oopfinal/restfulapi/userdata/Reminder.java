@@ -11,21 +11,24 @@ import java.util.TimerTask;
 public class Reminder {
     Timer timer;
 
-    public Reminder(SessionData data, Integer state) {
+    public Reminder(SessionData data, Integer state, userData Data) {
         timer = new Timer();
         RemindTask remind = new RemindTask();
         remind.setCurrent(data.getCurrent());
         if (state == 1) {
             remind.setId(data.getPlayer1().get("Id"));
+            remind.setPlayer(Data);
         }
         if (state == 2) {
             remind.setId(data.getPlayer2().get("Id"));
+            remind.setPlayer(Data);
         }
         remind.setRound(data.getRound());
         timer.schedule(remind, 20000);
 	}
 
     class RemindTask extends TimerTask {
+        userData Player;
         HashMap<Integer, HashMap<String, Integer>> round;
         Integer current;
         String Id;
@@ -53,7 +56,16 @@ public class Reminder {
             Id = id;
         }
 
+        public userData getPlayer() {
+            return Player;
+        }
+
+        public void setPlayer(userData player) {
+            Player = player;
+        }
+
         public void run() {
+            Player.setChallenge(false);
             this.round.get(current).put(Id, 4);
             timer.cancel(); //Terminate the timer thread
         }
