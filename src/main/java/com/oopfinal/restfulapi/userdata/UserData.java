@@ -1,7 +1,7 @@
 package com.oopfinal.restfulapi.userdata;
 
 
-public class userData {
+public class UserData {
     private String id;
     private String username;
     private String session;
@@ -25,20 +25,20 @@ public class userData {
         this.challenge = b;
     }
 
-    public userData(String id, String username) {
+    public UserData(String id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public userData(String id, String username, String session) {
+    public UserData(String id, String username, String session) {
         this.id = id;
         this.username = username;
         this.session = session;
     }
 
-    public userData(String username) { this.username = username;}
+    public UserData(String username) { this.username = username;}
 
-    public userData(String id, String username, String session, int score) {
+    public UserData(String id, String username, String session, int score) {
         this.id = id;
         this.username = username;
         this.session = session;

@@ -1,7 +1,7 @@
-package com.oopfinal.restfulapi.userdata;
+package com.oopfinal.restfulapi.requesthandle;
 
 import java.security.SecureRandom;
-public class RandomString {
+public class IdGenerator {
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();
 

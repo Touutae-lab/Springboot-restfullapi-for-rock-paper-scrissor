@@ -1,10 +1,32 @@
-package com.oopfinal.restfulapi.userdata;
+package com.oopfinal.restfulapi.requesthandle;
 
-public class MiniData {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class MinorRequest {
     private String status;
     private String id;
     private String username;
 
+    public MinorRequest() {
+
+    }
+
+    public MinorRequest(String status, String id, String username) {
+        this.status = status;
+        this.id = id;
+        this.username = username;
+    }
+
+    @JsonProperty("status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
@@ -12,7 +34,7 @@ public class MiniData {
     public void setId(String id) {
         this.id = id;
     }
-
+    @JsonProperty("username")
     public String getUsername() {
         return username;
     }
@@ -21,13 +43,6 @@ public class MiniData {
         this.username = username;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @java.lang.Override
     public java.lang.String toString() {

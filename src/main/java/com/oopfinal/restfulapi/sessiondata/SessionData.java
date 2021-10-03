@@ -1,16 +1,16 @@
-package com.oopfinal.restfulapi.userdata;
+package com.oopfinal.restfulapi.sessiondata;
 
 import java.util.HashMap;
 
 public class SessionData {
-    protected boolean status = true;
-    protected String winner = "";
-    protected HashMap<String, String> Player1;
-    protected HashMap<String, String> Player2;
-    protected String session;
+    private boolean status = true;
+    private String winner = "";
+    private PlayerData Player1;
+    private PlayerData Player2;
+    private String session;
     //round: ID: choice
-    protected HashMap<Integer, HashMap<String, Integer>> round = new HashMap<Integer, HashMap<String, Integer>>();
-    protected Integer current;
+    private HashMap<Integer, HashMap<String, Integer>> round = new HashMap<Integer, HashMap<String, Integer>>();
+    private Integer current;
     
     public HashMap<String, Integer> createHash(Integer choose, String userId) {
         HashMap<String, Integer> hashTemp = new HashMap<>();
@@ -21,31 +21,21 @@ public class SessionData {
         HashMap<String, Integer> tmpDas = this.round.get(round);
         tmpDas.put(Id, choose);
     }
-    private HashMap<String, String> getPlayertemp(String Id, String UserName, String Score) {
-        HashMap<String, String> dataTmp = new HashMap<>();
-        dataTmp.put("Id", Id);
-        dataTmp.put("username", UserName);
-        dataTmp.put("score", Score);
-        return dataTmp;
-    }
-    public void setPlayer2Null() {
-        this.Player2 = null;
-    }
 
-    public HashMap<String, String> getPlayer1() {
+    public PlayerData getPlayer1() {
         return Player1;
     }
 
-    public void setPlayer1(String Id, String UserName, String Score) {
-        Player1 = getPlayertemp(Id, UserName, Score);
+    public void setPlayer1(String id, String username, String score) {
+        Player1 = new PlayerData(id, username, score);
     }
 
-    public HashMap<String, String> getPlayer2() {
+    public PlayerData getPlayer2() {
         return Player2;
     }
 
-    public void setPlayer2(String Id, String UserName, String Score) {
-        Player2 = getPlayertemp(Id, UserName, Score);
+    public void setPlayer2(String id, String username, String score) {
+        Player2 = new PlayerData(id, username, score);
     }
 
     public void putHash(String userId, Integer choose) {
@@ -97,6 +87,10 @@ public class SessionData {
         this.status = status;
     }
 
+    public void resetRound() {
+        round = null;
+    }
+
     @java.lang.Override
     public java.lang.String toString() {
         return "SessionData{" +
@@ -107,5 +101,9 @@ public class SessionData {
                 ", round=" + round +
                 ", current=" + current +
                 '}';
+    }
+
+    public void setPlayer2Null() {
+        this.Player2 = null;
     }
 }
