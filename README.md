@@ -1,7 +1,7 @@
 # Developer Message
 
-Note: This isn't right tool for making online game, but for some reason we use this to implement our idea and see how possible or not to make clinent request only game..
-However if you want to making your own online game try [Socket.io](https://socket.io/) or [GraphQL](https://graphql.org/) would be more Suitable for this job.
+Note: This program may not be a right tool for an online game. However, we want to try how possible it could be to make such one-time pairs of requests and responses.
+However if you want to making your own online game try [Socket.io](https://socket.io/) or [GraphQL](https://graphql.org/) would be more suitable for this job.
 
 
 # Project
@@ -21,7 +21,7 @@ This project is a part of the assignment of 204211: Object-oriented Programming 
 
 Note: The program listens to port 8080. For example, you may send a POST request to `http://localhost:8080`. Or use [ngrok](https://ngrok.com) to temporarily forward the server to the public Internet access.
 
-This program is API for [Rock-Paper-Scrissor](https://github.com/dward2nd/rock-paper-scissor)
+This program is API for [Rock-Paper-Scissor](https://github.com/dward2nd/rock-paper-scissor)
 
 # Project Contributors.
 
@@ -32,4 +32,4 @@ Developer Team: GIVE THAT GUY AN A
 - Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
 - Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
 
-THIS PROGRAM IS UNDER [MIT LISENSE](https://github.com/Touutae-lab/Springboot-restfullapi-for-rock-paper-scrissor/blob/master/LICENSE)
+THIS PROGRAM IS LICENSED UNDER [MIT LICENSE](https://github.com/Touutae-lab/Springboot-restfullapi-for-rock-paper-scrissor/blob/master/LICENSE)
