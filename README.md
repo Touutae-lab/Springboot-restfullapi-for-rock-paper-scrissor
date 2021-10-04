@@ -16,4 +16,11 @@ This project is a part of the assignment of 204211: Object-oriented Programming 
 
 Note: The program listens to port 8080. For example, you may send a POST request to `http://localhost:8080`. Or use [ngrok](https://ngrok.com) to temporarily forward the server to the public Internet access.
 
+# Project Contributors.
+
 Developer Team: GIVE THAT GUY AN A
+
+- Saksinkarn Petchkuljinda [@dward2nd](https://github.com/dward2nd) (repo owner)
+- Pantakan Kanprawet [@Touutae-lab](https://github.com/Touutae-lab)
+- Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
+- Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
