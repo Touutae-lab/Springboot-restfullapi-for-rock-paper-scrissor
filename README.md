@@ -24,3 +24,5 @@ Developer Team: GIVE THAT GUY AN A
 - Pantakan Kanprawet [@Touutae-lab](https://github.com/Touutae-lab)
 - Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
 - Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
+
+THIS PROGRAM UNDER MIT
