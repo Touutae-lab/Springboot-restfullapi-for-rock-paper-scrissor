@@ -9,7 +9,7 @@ This project is a part of the assignment of 204211: Object-oriented Programming 
 
 # Setup
 
-1. Clone this repository `https://github.com/Touutae-lab/OOPapi.git`
+1. Clone this repository `https://github.com/Touutae-lab/Springboot-restfullapi-for-rock-paper-scrissor.git`
 2. Go to the directory of this repository
 3. Run `mvn verify`
 4. Now the executable *JAR* file will be generated and placed in `/target`. To run, you may use `java -jar path/to/restfulapi-1.0.0.jar`
