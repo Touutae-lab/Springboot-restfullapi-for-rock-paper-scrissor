@@ -3,6 +3,7 @@ package com.oopfinal.restfulapi.requesthandle;
 import java.util.HashMap;
 
 import com.oopfinal.restfulapi.sessiondata.GameHandle;
+import com.oopfinal.restfulapi.sessiondata.PlayerData;
 import com.oopfinal.restfulapi.sessiondata.SessionData;
 import com.oopfinal.restfulapi.sessiondata.SessionHandle;
 import com.oopfinal.restfulapi.userdata.*;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 
 
 @RestController
@@ -22,6 +23,10 @@ public class Requesthandle {
     @GetMapping(path="/testSession")
     public @ResponseBody HashMap<String, SessionData> getTest(){
         return SessionControl;
+    }
+    @GetMapping(path="/testplayer")
+    public @ResponseBody HashMap<String, UserData> mydata() {
+        return Data;
     }
     //----------------------------------Finished------------------------------
     @PostMapping(path="/register")
@@ -174,8 +179,29 @@ public class Requesthandle {
         LoggingController.log(
                 String.format("\nPOST To /choose: Id = %s, round = %s, choose = %d",
                         Id, round, choose.intValue()));
-        
+        IdGenerator generator = new IdGenerator();
         SessionData sessiontmp = SessionControl.get(session);
+        if (round == 5) {
+            String newSession = generator.randomString(8);
+            Data.get(sessiontmp.getPlayer1().getId()).setChallenge(false);
+            Data.get(sessiontmp.getPlayer1().getId()).setSession(newSession);
+
+            SessionData newsessionclass = new SessionData();
+            newsessionclass.setPlayer1(sessiontmp.getPlayer1().getId(),  sessiontmp.getPlayer1().getUsername(), "0");
+            newsessionclass.setPlayer2Null();
+            SessionControl.put(newSession, newsessionclass);
+        }
+        if (choose == 4) {
+            String newSession = generator.randomString(8);
+            UserData sessionowner = Data.get(sessiontmp.getPlayer1().getId());
+            sessionowner.setChallenge(false);
+            sessionowner.setSession(newSession);
+
+            SessionData newsessionclass = new SessionData();
+            newsessionclass.setPlayer1(sessionowner.getId(),  sessionowner.getUsername(), "0");
+            sessiontmp.setStatus(false);
+            SessionControl.put(newSession, newsessionclass);
+        }
         if (sessiontmp.getCurrent() < round) {
             sessiontmp.setCurrent(round);
         }
