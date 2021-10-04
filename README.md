@@ -21,7 +21,7 @@ This project is a part of the assignment of 204211: Object-oriented Programming 
 
 Note: The program listens to port 8080. For example, you may send a POST request to `http://localhost:8080`. Or use [ngrok](https://ngrok.com) to temporarily forward the server to the public Internet access.
 
-This program is API for [Rock-Paper-Scissor](https://github.com/dward2nd/rock-paper-scissor)
+This program is API for [Rock-Paper-Scrissor](https://github.com/dward2nd/rock-paper-scissor)
 
 # Project Contributors.
 
