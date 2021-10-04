@@ -1,6 +1,6 @@
 # Developer Message
 
-Note: This program may not be a right tool for an online game. However, we want to try how possible it could be to make such one-time pairs of requests and responses.
+Note: This program may not be a right tool for an online game. However, we would like to explore how possible it could be to make such one-time pairs of requests and responses.
 However if you want to making your own online game try [Socket.io](https://socket.io/) or [GraphQL](https://graphql.org/) would be more suitable for this job.
 
 
