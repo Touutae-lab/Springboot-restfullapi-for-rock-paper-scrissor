@@ -20,8 +20,8 @@ Note: The program listens to port 8080. For example, you may send a POST request
 
 Developer Team: GIVE THAT GUY AN A
 
-- Saksinkarn Petchkuljinda [@dward2nd](https://github.com/dward2nd) (repo owner)
-- Pantakan Kanprawet [@Touutae-lab](https://github.com/Touutae-lab)
+- Pantakan Kanprawet [@Touutae-lab](https://github.com/Touutae-lab) (repo owner)
+- Saksinkarn Petchkuljinda [@dward2nd](https://github.com/dward2nd) (contributor)
 - Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
 - Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
 
