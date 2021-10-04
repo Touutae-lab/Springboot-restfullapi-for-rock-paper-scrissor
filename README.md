@@ -27,4 +27,4 @@ Developer Team: GIVE THAT GUY AN A
 - Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
 - Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
 
-THIS PROGRAM UNDER MIT
+THIS PROGRAM UNDER [MIT LISENSE](https://github.com/Touutae-lab/Springboot-restfullapi-for-rock-paper-scrissor/blob/master/LICENSE)
