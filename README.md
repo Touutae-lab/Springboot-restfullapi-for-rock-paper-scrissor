@@ -1,6 +1,6 @@
 # Developer Message
 
-Note: This isn't right tool for making online, but for some reason we use this to implement our idea and see how possible or not to make clinent request only game..
+Note: This isn't right tool for making online game, but for some reason we use this to implement our idea and see how possible or not to make clinent request only game..
 However if you want to making your own online game try [Socket.io](https://socket.io/) or [GraphQL](https://graphql.org/) would be more Suitable for this job.
 
 
