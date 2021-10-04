@@ -1,4 +1,4 @@
-# Before you dig in
+# Developer Message
 
 Note: This isn't right tool for making online, but for some reason we use this to implement our idea and see how possible or not to make clinent request only game..
 However if you want to making your own online game try [Socket.io](https://socket.io/) or [GraphQL](https://graphql.org/) would be more Suitable for this job.
@@ -28,7 +28,7 @@ This program is API for [Rock-Paper-Scissor](https://github.com/dward2nd/rock-pa
 Developer Team: GIVE THAT GUY AN A
 
 - Pantakan Kanprawet [@Touutae-lab](https://github.com/Touutae-lab) (Repo owner, Back-end Developer)
-- Saksinkarn Petchkuljinda [@dward2nd](https://github.com/dward2nd) (Fron-end Developer, [Aplications](https://github.com/dward2nd/rock-paper-scissor))
+- Saksinkarn Petchkuljinda [@dward2nd](https://github.com/dward2nd) (Front-end Developer, [Aplications](https://github.com/dward2nd/rock-paper-scissor))
 - Ponlakrit Parnsa-nguard [@NickP-real](https://github.com/NickP-real) (UX/UI Designer)
 - Phornphithak Rotkhian [@ph0pz](https://github.com/ph0pz) (UX/UI Designer)
 
